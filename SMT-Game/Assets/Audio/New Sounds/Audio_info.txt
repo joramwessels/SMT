@@ -1,0 +1,21 @@
+BPM: 127
+Key: Bmin (melodic)
+
+127/4 = 31.75
+60/31.75 = 1.8898
+--> one bar = 1890ms
+
+Backing track has 111 bars
+Every sound file starts at the start of a bar
+
+Bomb: 		4 bars (instead of 2)
+Thunder:	6 bars (1 extra before, and 1 extra after)
+Water:		8 bars (instead of 3 bars (1.5 bars rising tide, 1.5 bars flood))
+Star:		4 bars (same as "bg", but I think the original has no sound for stars)
+
+Original start of instruments:
+Bomb:		55-62, 65-66, 69-70, 75-102
+Thunder:	35-50, 63-70, 87-102
+Water:		19-42, 55-62, 79-102
+Star:		51-70
+(There's a break at 71-74)
