@@ -15,7 +15,7 @@ public class Level : MonoBehaviour {
     [SerializeField]
     //protected SoundMode soundMode = SoundMode.Generated;
     protected SoundMode soundMode = SoundMode.Generated;
-    protected static float tickDuration = 1f; // 1 = 120bpm
+    protected static float tickDuration = 1.0583f; // 1 = 120bpm, 1.0583 = 127bpm
     protected float nextTick;
 
     bool finished = false;
@@ -49,27 +49,31 @@ public class Level : MonoBehaviour {
 
     protected GameObject spawnBomb(float x, float y = 0.05f, float? radius = 4, float explosionDelay = 4, float? teleDuration = 2)
     {
+        if (soundMode == SoundMode.Generated)
+            music.StartBombCue(0, x);
+
         var bomb = bombs.Spawn(v2(x, y), false);
         float delay = explosionDelay * tickDuration;
         bomb.GetComponent<BombControllerScript>().SetProperties(radius, delay, teleDuration * tickDuration);
         bomb.gameObject.SetActive(true);
 
-        if (soundMode==SoundMode.Generated)
-            music.StartBombCue(delay, x);
         
         return bomb;
     }
 
-    protected GameObject spawnCloud(float x, float y = 1f, float? size = 1f, float? waitDuration = 2f, float? thunderDuration = 2f, bool halfDuration = false)
+    protected GameObject spawnCloud(float x, float y = 1f, float? size = 1f, float? startWaitDuration = 2f, float? thunderDuration = 2f, float? waitDuration = 2f, float? endWaitDuration = 2f, bool halfDuration = false)
     {
+        // The option of 'halfDuration' has been disabled
+        if (soundMode == SoundMode.Generated)
+            music.StartCloudCue(16 * tickDuration, x);
+        
         var cloud = clouds.Spawn(v2(x, y), true);
         float? waitTime = waitDuration * tickDuration;
         float? thunderTime = thunderDuration * tickDuration;
-        cloud.GetComponent<CloudScript>().SetProperties(1, waitTime, thunderTime);
+        float? startWaitTime = startWaitDuration * tickDuration;
+        float? endWaitTime = endWaitDuration * tickDuration;
+        cloud.GetComponent<CloudScript>().SetProperties(1, waitTime, thunderTime, startWaitTime, endWaitTime);
         cloud.gameObject.SetActive(true);
-
-        if (soundMode == SoundMode.Generated)
-            music.StartCloudCue((halfDuration) ? 4 * tickDuration : 8 * tickDuration, x);
         
         return cloud;
     }

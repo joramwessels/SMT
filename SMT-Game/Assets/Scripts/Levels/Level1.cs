@@ -13,8 +13,8 @@ public class Level1 : Level {
         spawnBomb(0, 0.05f, 3, 8, 1);
         yield return WaitTick(4);
         //4
-        var cloudLeft = spawnCloud(-0.5f, 1, 1.4f, 2f, 2f);
-        var cloudRight = spawnCloud(0.5f, 1, 1.4f, 2f, 2f);
+        var cloudLeft = spawnCloud(-0.5f, 1, 1.4f, 2f, 2f, 2f, 2f);
+        var cloudRight = spawnCloud(0.5f, 1, 1.4f, 2f, 2f, 2f, 2f);
         var starMiddle = stars.Spawn(v2(0, 1), true);
         yield return WaitTick(2);
         ObjectPool.Despawn(starMiddle, "star pool");
@@ -36,11 +36,11 @@ public class Level1 : Level {
         yield return WaitTick(2);
         ObjectPool.Despawn(starLeft, "star pool");
         yield return WaitTick(2);
-        cloudLeft = spawnCloud(-0.8f, 1, 1.4f, 2, 2);
-        cloudRight = spawnCloud(0.8f, 1, 1.4f, 2f, 2f);
+        cloudLeft = spawnCloud(-0.8f, 1, 1.4f, 2, 2, 2f, 2f);
+        cloudRight = spawnCloud(0.8f, 1, 1.4f, 2f, 2f, 2f, 2f);
         starLeft = stars.Spawn(v2(-0.8f, 1f), true);
         var starRight = stars.Spawn(v2(0.8f, 1f), true);
-        var movingCloud = spawnCloud(orientation * 0.7f, 1, 1, 2f, 2f);
+        var movingCloud = spawnCloud(orientation * 0.7f, 1, 1, 2f, 2f, 2f, 2f);
         Rigidbody2D mcRB = movingCloud.AddComponent<Rigidbody2D>();
         mcRB.velocity += new Vector2(-orientation * 2f, 0);
         mcRB.gravityScale = 0;
@@ -57,8 +57,8 @@ public class Level1 : Level {
         var randomStar = stars.Spawn(v2(orientation * 0.3f, 1f), true);
         StartFlood();
         yield return WaitTick(4);
-        spawnCloud(-0.3f, 1, 1, 2f, 2f);
-        spawnCloud(0.3f, 1, 1, 2f, 2f);
+        spawnCloud(-0.3f, 1, 1, 2f, 2f, 2f, 2f);
+        spawnCloud(0.3f, 1, 1, 2f, 2f, 2f, 2f);
         EndFlood();
         ObjectPool.Despawn(randomStar, "star pool");
         yield return WaitTick(3);
@@ -66,11 +66,11 @@ public class Level1 : Level {
         spawnBomb(0f, 0.05f, 2, 2, 1);
         yield return WaitTick(1);
 
-        movingCloud = spawnCloud(orientation * 0.7f, 1, 1, 2f, 2f, true);
+        movingCloud = spawnCloud(orientation * 0.7f, 1, 1, 2f, 2f, 2f, 2f, true);
         mcRB = movingCloud.AddComponent<Rigidbody2D>();
         mcRB.velocity += new Vector2(-orientation * 2f, 0);
         mcRB.gravityScale = 0;
-        var movingCloud2 = spawnCloud(-orientation * 0.7f, 1, 1, 2f, 2f, true);
+        var movingCloud2 = spawnCloud(-orientation * 0.7f, 1, 1, 2f, 2f, 2f, 2f, true);
         Rigidbody2D mcRB2 = movingCloud2.AddComponent<Rigidbody2D>();
         mcRB2.velocity += new Vector2(orientation * 2f, 0);
         mcRB2.gravityScale = 0;

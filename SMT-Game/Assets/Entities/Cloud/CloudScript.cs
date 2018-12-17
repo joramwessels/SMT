@@ -30,11 +30,12 @@ public class CloudScript : MonoBehaviour {
     GameObject lightning;
 
     [SerializeField]
-    float size = 5, waitTime = 1, thunderTime = 3;
+    // The event exists of: startWaitTime, thunderTime, waitTime, thunderTime, endWaitTime
+    float size = 5, startWaitTime = 1, waitTime = 1, thunderTime = 3, endWaitTime = 1;
 
     float spawn_time;
 
-    public void SetProperties(float? size, float? waitTime, float? thunderTime)
+    public void SetProperties(float? size, float? waitTime, float? thunderTime, float? startWaitTime, float? endWaitTime)
     {
         if (gameObject.activeSelf)
             Debug.LogWarning("Adjusting cloud properties while it's active, behaviour might not be as expected");
@@ -45,6 +46,10 @@ public class CloudScript : MonoBehaviour {
             this.waitTime = waitTime.Value;
         if (thunderTime.HasValue)
             this.thunderTime = thunderTime.Value;
+        if (startWaitTime.HasValue)
+            this.startWaitTime = startWaitTime.Value;
+        if (endWaitTime.HasValue)
+            this.endWaitTime = endWaitTime.Value;
     }
 
     // Use this for initialization
@@ -64,24 +69,33 @@ public class CloudScript : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        if (Time.fixedTime >= spawn_time + 2 * waitTime + 2 * thunderTime)
+        // Termination
+        if (Time.fixedTime >= spawn_time + startWaitTime + waitTime + 2 * thunderTime + endWaitTime)
         {
-            lightning.SetActive(false);
             this.OnDisable();
             ObjectPool.Despawn(gameObject, "cloud pool");
         }
-        else if (Time.fixedTime >= spawn_time + 2 * waitTime + thunderTime)
-        {
-            lightning.SetActive(true);
-        }
-        else if (Time.fixedTime >= spawn_time + waitTime + thunderTime)
+        // End wait
+        else if (Time.fixedTime >= spawn_time + startWaitTime + waitTime + 2 * thunderTime)
         {
             lightning.SetActive(false);
-        } 
-        else if (Time.fixedTime >= spawn_time + waitTime)
+        }
+        // 2nd thunder
+        else if (Time.fixedTime >= spawn_time + startWaitTime + waitTime + thunderTime)
         {
             lightning.SetActive(true);
         }
+        // 2nd wait
+        else if (Time.fixedTime >= spawn_time + startWaitTime + thunderTime)
+        {
+            lightning.SetActive(false);
+        }
+        // 1st thunder
+        else if (Time.fixedTime >= spawn_time + startWaitTime)
+        {
+            lightning.SetActive(true);
+        }
+        // 1st wait
         else
         {
             lightning.SetActive(false);
