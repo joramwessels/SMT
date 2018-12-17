@@ -35,7 +35,7 @@ public class MenuScript : MonoBehaviour {
     public static string state = "";
     public static int QuestionsAnswered = 0;
     public static int levelID = 0;
-    public static string[] levelNames = new string[] { "Level1", "Cloudtopia" , "Bombmania" };
+    public static string[] levelNames = new string[] { "MusicLevel", "Level1", "Cloudtopia" , "Bombmania" };
     public static SoundMode[][] soundOrders = new SoundMode[][]
     {
         new SoundMode[] { SoundMode.None, SoundMode.Beat, SoundMode.Generated },
@@ -50,7 +50,14 @@ public class MenuScript : MonoBehaviour {
 	public void OnButton()
     {
         InputField codeField = FindObjectOfType<InputField>();
-        int code = int.Parse(codeField.text);
+        int code;
+        try
+        {
+            code = int.Parse(codeField.text);
+        } catch
+        {
+            code = 20242;
+        }
         UserGroup group;
         try
         {
