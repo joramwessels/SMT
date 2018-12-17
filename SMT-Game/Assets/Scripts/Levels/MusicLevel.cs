@@ -3,12 +3,25 @@ using System.Collections;
 
 public class MusicLevel : Level
 {
-    int bar = 1890;
+
+    ////////////////////
+    // TODO:
+    // - use beep coroutine to sync WaitTick() to 127 bpm
+    //      - create beep coroutine
+    //      - change 'beat' to beep sound
+    // - investigate BombCue coroutine (pitch alteration?)
+    // - create level.cs/SpawnStar() function to include star music
+    // - loop and fade in flood music? or stick to static duration?
+
+    float bar = 1.890f;
+    float beat = 0.4725f;
 
     protected override IEnumerator LevelScript()
     {
         PlayBackground();
-
+        StartFlood();
+        yield return WaitTick(8);
+        EndFlood();
         yield return WaitTick(8);
         var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
         yield return WaitTick(8);

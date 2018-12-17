@@ -15,7 +15,7 @@ public class Level : MonoBehaviour {
     [SerializeField]
     //protected SoundMode soundMode = SoundMode.Generated;
     protected SoundMode soundMode = SoundMode.Generated;
-    protected static float tickDuration = 1.0583f; // 1 = 120bpm, 1.0583 = 127bpm
+    protected static float tickDuration = 1f; // 1 = 120bpm, 0.944889764 = 127bpm
     protected float nextTick;
 
     bool finished = false;
@@ -83,8 +83,9 @@ public class Level : MonoBehaviour {
         water.State = WaterState.Flood;
         if (soundMode == SoundMode.Generated)
         {
+            music.FadeInFloodMusic();
             music.StartFloodCue();
-            music.FadeOutBGMusic();
+            //music.FadeOutBGMusic();
         }
     }
 
@@ -93,11 +94,16 @@ public class Level : MonoBehaviour {
         water.State = WaterState.Ebb;
         if (soundMode == SoundMode.Generated)
         {
-            //music.EndFloodCue();
-            music.FadeInBGMusic();
+            music.FadeOutFloodMusic();
+            ////music.EndFloodCue();
+            //music.FadeInBGMusic();
         }
     }
 
+    //protected void PlayBeep()
+    //{
+    //    music.PlayBeep();
+    //}
 
     protected void PlayBackground()
     {

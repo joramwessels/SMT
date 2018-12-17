@@ -40,6 +40,7 @@ public class MusicController : MonoBehaviour {
     bool bgFadeOut = false;
     bool bgFadeIn = false;
     bool floodFadeIn = false;
+    bool floodFadeOut = false;
 
     AudioSource GetNewSource(int channelId)
     {
@@ -93,6 +94,18 @@ public class MusicController : MonoBehaviour {
         source.Play();
     }
 
+    /*IEnumerator Beep(float duration, float stereo)
+    {
+        var channel = 4;
+        var source = GetNewSource(channel);
+        source.Play();
+    }
+
+    public void PlayBeep()
+    {
+        StartCoroutine(Beep(1f, 1f));
+    }*/
+
     public void PlayBackground()
     {
         bgMusic = GetNewSource(0);
@@ -134,16 +147,25 @@ public class MusicController : MonoBehaviour {
         if (floodFadeIn)
         {
             // SOUNDS BETTER WITHOUT FADE
-            //if (floodMusic.volume < 1)
-            //{
-            //    floodMusic.volume += 0.1f * Level.getTickDuration() * Time.deltaTime;
-            //}
-            //else
-            //{
-            //    floodFadeIn = false;
-            //}
-            floodFadeIn = false;
-            floodMusic.volume = 1;
+            if (floodMusic.volume < 1)
+            {
+                floodMusic.volume += 0.1f * Level.getTickDuration() * Time.deltaTime;
+            }
+            else
+            {
+                floodFadeIn = false;
+            }
+        }
+        if (floodFadeOut)
+        {
+            if (floodMusic.volume > 0)
+            {
+                floodMusic.volume -= 0.1f * Level.getTickDuration() * Time.deltaTime;
+            }
+            else
+            {
+                floodFadeOut = false;
+            }
         }
     }
 
@@ -154,6 +176,16 @@ public class MusicController : MonoBehaviour {
     public void FadeInBGMusic()
     {
         bgFadeIn = true;
+    }
+
+    public void FadeOutFloodMusic()
+    {
+        floodFadeOut = true;
+    }
+
+    public void FadeInFloodMusic()
+    {
+        floodFadeIn = true;
     }
 
     public void StartBombCue(float explosionDelay, float stereo)
