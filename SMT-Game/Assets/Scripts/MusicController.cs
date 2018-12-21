@@ -69,7 +69,7 @@ public class MusicController : MonoBehaviour {
     IEnumerator PlayForDuration(int channel, float duration, float stereo = 0)
     {
         var source = GetNewSource(channel);
-        source.pitch = 1 / Level.getTickDuration();
+        //source.pitch = 1 / Level.getTickDuration();
         if (duration == -1)
             duration = source.clip.length * Level.getTickDuration();
         source.panStereo = stereo;
@@ -196,12 +196,19 @@ public class MusicController : MonoBehaviour {
         StartCoroutine(CloudCue(duration, stereo));
     }
 
-    public void StartFloodCue()
+    public void StartFloodCue(float duration)
+    {
+        StartCoroutine(FloodCue(duration));
+    }
+
+    IEnumerator FloodCue(float duration)
     {
         floodMusic = GetNewSource(2);
-        floodMusic.volume = 0;
-        floodMusic.pitch = 1 / Level.getTickDuration();
+        //floodMusic.volume = 0;
+        //floodMusic.pitch = 1 / Level.getTickDuration();
         floodMusic.Play();
-        floodFadeIn = true;
+        //floodFadeIn = true;
+        yield return new WaitForSecondsRealtime(duration);
+        StopSource(floodMusic, 2);
     }
 }

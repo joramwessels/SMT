@@ -18,6 +18,8 @@ public class Level : MonoBehaviour {
     protected static float tickDuration = 1f; // 1 = 120bpm, 0.944889764 = 127bpm
     protected float nextTick;
 
+    float barLength = 0.944889764f * 2; // 1 bar at 127bpm
+
     bool finished = false;
     public static float getTickDuration() {
         return tickDuration;
@@ -53,8 +55,8 @@ public class Level : MonoBehaviour {
             music.StartBombCue(0, x);
 
         var bomb = bombs.Spawn(v2(x, y), false);
-        float delay = explosionDelay * tickDuration;
-        bomb.GetComponent<BombControllerScript>().SetProperties(radius, delay, teleDuration * tickDuration);
+        float delay = explosionDelay * (barLength * .5f);
+        bomb.GetComponent<BombControllerScript>().SetProperties(radius, delay, teleDuration * (barLength * .5f));
         bomb.gameObject.SetActive(true);
 
         
@@ -68,25 +70,57 @@ public class Level : MonoBehaviour {
             music.StartCloudCue(16 * tickDuration, x);
         
         var cloud = clouds.Spawn(v2(x, y), true);
-        float? waitTime = waitDuration * tickDuration;
-        float? thunderTime = thunderDuration * tickDuration;
-        float? startWaitTime = startWaitDuration * tickDuration;
-        float? endWaitTime = endWaitDuration * tickDuration;
+        float? waitTime = waitDuration * (barLength * .5f);
+        float? thunderTime = thunderDuration * (barLength * .5f);
+        float? startWaitTime = startWaitDuration * (barLength * .5f);
+        float? endWaitTime = endWaitDuration * (barLength * .5f);
         cloud.GetComponent<CloudScript>().SetProperties(1, waitTime, thunderTime, startWaitTime, endWaitTime);
         cloud.gameObject.SetActive(true);
         
         return cloud;
     }
 
-    protected void StartFlood()
+    //protected GameObject spawnStar(float x, float y, float duration)
+    //{
+    //    if (soundMode == SoundMode.Generated)
+    //        music.PlayStarCue(duration * tickDuration);
+    //
+    //    var star = stars.Spawn(v2(x, y), true);
+    //    //star.GetComponent<StarScript>.SetProperties();
+    //    return star;
+    //}
+
+    // Calling a flood by only specifying the start and duration
+    protected void StartFlood(float delay, float duration)
     {
-        water.State = WaterState.Flood;
+        StartCoroutine(Flood(delay, duration));
+    }
+
+    IEnumerator Flood(float delay, float duration)
+    {
         if (soundMode == SoundMode.Generated)
         {
-            music.FadeInFloodMusic();
-            music.StartFloodCue();
+            //music.FadeInFloodMusic();
+            music.StartFloodCue(duration * barLength);
             //music.FadeOutBGMusic();
         }
+        water.GetComponent<WaterScript>().SetProperties(delay * barLength);
+        water.GetComponent<WaterScript>().SetStartTime(Time.time);
+        water.State = WaterState.Flood;
+        yield return new WaitForSecondsRealtime(duration);
+        EndFlood();
+    }
+
+    // Calling and ending a flood manually
+    protected void StartFlood()
+    {
+        if (soundMode == SoundMode.Generated)
+        {
+            //music.FadeInFloodMusic();
+            music.StartFloodCue(8f * barLength);
+            //music.FadeOutBGMusic();
+        }
+        water.State = WaterState.Flood;
     }
 
     protected void EndFlood()
@@ -94,7 +128,7 @@ public class Level : MonoBehaviour {
         water.State = WaterState.Ebb;
         if (soundMode == SoundMode.Generated)
         {
-            music.FadeOutFloodMusic();
+            //music.FadeOutFloodMusic();
             ////music.EndFloodCue();
             //music.FadeInBGMusic();
         }
@@ -131,6 +165,11 @@ public class Level : MonoBehaviour {
             yield return new WaitUntil(hasNextTickPassed);
             Log.NextTick();
         }
+    }
+
+    protected IEnumerator WaitBars(float bars)
+    {
+        yield return new WaitForSecondsRealtime(bars * barLength);
     }
 
     public static Vector2 v2(float x, float y)

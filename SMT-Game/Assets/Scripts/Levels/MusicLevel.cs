@@ -9,49 +9,33 @@ public class MusicLevel : Level
     // - use beep coroutine to sync WaitTick() to 127 bpm
     //    - Get MusicLevel to work
     // - investigate BombCue coroutine (pitch alteration?)
-    // - create level.cs/SpawnStar() function to include star music
+    // - create level.cs/SpawnStar() function to include star music?
     // - loop and fade in flood music? or stick to static duration?
+    // 
+    // - game music modes
 
-    float bar = 1.890f;
-    float beat = 0.4725f;
+    //float bar = 0.944889764f; // 1 bar at 127bpm
+    //float beat = 0.4725f;
+
 
     protected override IEnumerator LevelScript()
     {
         PlayBackground();
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
-        PlayBeep();
-        yield return WaitTick(4);
+        rafts.Spawn(v2(-0.3f, -1f), true);
+        yield return WaitBars(18f);
 
-        WaitTick(40);
-        StartFlood();
-        yield return WaitTick(8);
+        StartFlood(5f, 8f);
+        yield return WaitBars(8f);
         EndFlood();
-        yield return WaitTick(8);
+        yield return WaitBars(8f);
         var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
-        yield return WaitTick(8);
+        yield return WaitBars(8f);
         var cloud1 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
-        yield return WaitTick(8);
+        yield return WaitBars(8f);
+        var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
+        yield return WaitBars(8f);
+        var cloud2 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
+        yield return WaitBars(8f);
 
         /*//0
         var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 4, 2);

@@ -38,12 +38,18 @@ public class WaterScript : MonoBehaviour
     Transform floodHeight = null, ebbHeight = null;
 
     [SerializeField]
-    float speed = 1;
+    float speed = 1, delay = 0;
 
     [SerializeField]
     Transform mobilePart;
 
     float startTime;
+
+    // To set the delay from a Level script
+    public void SetProperties(float delay)
+    {
+        this.delay = delay;
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +57,10 @@ public class WaterScript : MonoBehaviour
         startTime = Time.time;
     }
 
+    public void SetStartTime(float time)
+    {
+        startTime = time;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -61,8 +71,11 @@ public class WaterScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        float targetHeight = state == WaterState.Ebb ? ebbHeight.position.y : floodHeight.position.y;
-        float speedMod = Mathf.Clamp(targetHeight - rbody.position.y , -1, 1);
-        rbody.velocity = new Vector2(0, speedMod * speed);
+        if (Time.time > startTime + delay)
+        {
+            float targetHeight = state == WaterState.Ebb ? ebbHeight.position.y : floodHeight.position.y;
+            float speedMod = Mathf.Clamp(targetHeight - rbody.position.y, -1, 1);
+            rbody.velocity = new Vector2(0, speedMod * speed);
+        }
     }
 }
