@@ -7,8 +7,7 @@ public class MusicLevel : Level
     ////////////////////
     // TODO:
     // - use beep coroutine to sync WaitTick() to 127 bpm
-    //      - create beep coroutine
-    //      - change 'beat' to beep sound
+    //    - Get MusicLevel to work
     // - investigate BombCue coroutine (pitch alteration?)
     // - create level.cs/SpawnStar() function to include star music
     // - loop and fade in flood music? or stick to static duration?
@@ -19,6 +18,32 @@ public class MusicLevel : Level
     protected override IEnumerator LevelScript()
     {
         PlayBackground();
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+        PlayBeep();
+        yield return WaitTick(4);
+
+        WaitTick(40);
         StartFlood();
         yield return WaitTick(8);
         EndFlood();

@@ -100,10 +100,10 @@ public class Level : MonoBehaviour {
         }
     }
 
-    //protected void PlayBeep()
-    //{
-    //    music.PlayBeep();
-    //}
+    protected void PlayBeep()
+    {
+        music.PlayBeep();
+    }
 
     protected void PlayBackground()
     {

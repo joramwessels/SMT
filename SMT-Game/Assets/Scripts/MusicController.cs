@@ -93,18 +93,11 @@ public class MusicController : MonoBehaviour {
         
         source.Play();
     }
-
-    /*IEnumerator Beep(float duration, float stereo)
-    {
-        var channel = 4;
-        var source = GetNewSource(channel);
-        source.Play();
-    }
-
+    
     public void PlayBeep()
     {
-        StartCoroutine(Beep(1f, 1f));
-    }*/
+        PlayForDuration(4, 1, 1f);
+    }
 
     public void PlayBackground()
     {
