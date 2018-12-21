@@ -91,17 +91,17 @@ public class Level : MonoBehaviour {
     //}
 
     // Calling a flood by only specifying the start and duration
-    protected void StartFlood(float delay, float duration)
+    protected void StartFlood(float delay, float duration, bool fadeOut)
     {
-        StartCoroutine(Flood(delay, duration));
+        StartCoroutine(Flood(delay, duration, fadeOut));
     }
 
-    IEnumerator Flood(float delay, float duration)
+    IEnumerator Flood(float delay, float duration, bool fadeOut)
     {
         if (soundMode == SoundMode.Generated)
         {
             //music.FadeInFloodMusic();
-            music.StartFloodCue(duration * barLength);
+            music.StartFloodCue(duration * barLength, fadeOut);
             //music.FadeOutBGMusic();
         }
         water.GetComponent<WaterScript>().SetProperties(delay * barLength);
@@ -117,7 +117,7 @@ public class Level : MonoBehaviour {
         if (soundMode == SoundMode.Generated)
         {
             //music.FadeInFloodMusic();
-            music.StartFloodCue(8f * barLength);
+            music.StartFloodCue(8f * barLength, false);
             //music.FadeOutBGMusic();
         }
         water.State = WaterState.Flood;

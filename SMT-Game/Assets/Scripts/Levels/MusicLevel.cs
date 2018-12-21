@@ -6,12 +6,8 @@ public class MusicLevel : Level
 
     ////////////////////
     // TODO:
-    // - use beep coroutine to sync WaitTick() to 127 bpm
-    //    - Get MusicLevel to work
-    // - investigate BombCue coroutine (pitch alteration?)
-    // - create level.cs/SpawnStar() function to include star music?
-    // - loop and fade in flood music? or stick to static duration?
-    // 
+    // - Create level
+    // - (create level.cs/SpawnStar() function to include star music)?
     // - game music modes
 
     //float bar = 0.944889764f; // 1 bar at 127bpm
@@ -24,18 +20,29 @@ public class MusicLevel : Level
         rafts.Spawn(v2(-0.3f, -1f), true);
         yield return WaitBars(18f);
 
-        StartFlood(5f, 8f);
-        yield return WaitBars(8f);
-        EndFlood();
-        yield return WaitBars(8f);
-        var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
-        yield return WaitBars(8f);
+        // 19
+        StartFlood(5f, 26f, true);
+        yield return WaitBars(26f);
+
+        // 35
         var cloud1 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
         yield return WaitBars(8f);
-        var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
-        yield return WaitBars(8f);
+
+        // 43
         var cloud2 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
+        yield return WaitBars(12f);
+
+        // 55
+        var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
         yield return WaitBars(8f);
+
+        // 63
+
+        //yield return WaitBars(8f);
+        //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
+        //yield return WaitBars(8f);
+        //var cloud3 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
+        //yield return WaitBars(8f);
 
         /*//0
         var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 4, 2);

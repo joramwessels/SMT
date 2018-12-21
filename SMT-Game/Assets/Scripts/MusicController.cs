@@ -196,19 +196,24 @@ public class MusicController : MonoBehaviour {
         StartCoroutine(CloudCue(duration, stereo));
     }
 
-    public void StartFloodCue(float duration)
+    public void StartFloodCue(float duration, bool fadeOut)
     {
-        StartCoroutine(FloodCue(duration));
+        StartCoroutine(FloodCue(duration, fadeOut));
     }
 
-    IEnumerator FloodCue(float duration)
+    IEnumerator FloodCue(float duration, bool fadeOut)
     {
         floodMusic = GetNewSource(2);
         //floodMusic.volume = 0;
         //floodMusic.pitch = 1 / Level.getTickDuration();
         floodMusic.Play();
-        //floodFadeIn = true;
         yield return new WaitForSecondsRealtime(duration);
+        if (fadeOut)
+        {
+            floodFadeOut = true;
+            yield return new WaitForSecondsRealtime(3f);
+
+        }
         StopSource(floodMusic, 2);
     }
 }
