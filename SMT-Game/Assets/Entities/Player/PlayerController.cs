@@ -41,16 +41,17 @@ public class PlayerController : MonoBehaviour {
 
     Vector3 initialPosition;
 
+    bool isGrounded;
+
     Rigidbody2D rbody;
-    public void SetDirection(float direction)
-    {
+    BoxCollider2D playerCollider;
+    public void SetDirection(float direction) {
         var y = rbody.velocity.y;
-        if(direction != 0)
-        rbody.velocity = new Vector2(direction * (speed*(1/Level.getTickDuration())), y);
+        if (direction != 0)
+            rbody.velocity = new Vector2(direction * (speed * (1 / Level.getTickDuration())), y);
     }
 
-    public void Hit(string name)
-    {
+    public void Hit(string name) {
         int delta = 0;
         if (name == "bomb" || name == "lightning")
             delta = -1;
@@ -65,19 +66,40 @@ public class PlayerController : MonoBehaviour {
         Log.WriteHit(dstr + " " + name + " " + transform.position, Time.time, Score);
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
+        playerCollider = GetComponent<BoxCollider2D>();
         rbody = GetComponent<Rigidbody2D>();
         initialPosition = rbody.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(Score != prevScore)
+        isGrounded = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision) {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
+            isGrounded = false;
+        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        Debug.Log(isGrounded);
+        if (Score != prevScore)
             scoreText.text = Score.ToString();
         if (Log.Tick != lastTick)
             tickText.text = Log.Tick.ToString();
         lastTick = Log.Tick;
         prevScore = Score;
-	}
+    }
+
+    public void Jump() {
+        if (isGrounded) {
+            rbody.AddForce(new Vector2(0, 5f), ForceMode2D.Impulse);
+        }
+    }
 }
