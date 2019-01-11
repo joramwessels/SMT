@@ -29,10 +29,14 @@ public class InputHandler : MonoBehaviour {
 
     [SerializeField]
     PlayerController player;
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         var inputX = Input.GetAxis("Horizontal");
         player.SetDirection(inputX);
-	}
+
+        if (Input.GetKeyDown("space")) {
+            player.Jump();
+        }
+    }
 }
