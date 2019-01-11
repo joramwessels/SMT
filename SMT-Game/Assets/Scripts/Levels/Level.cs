@@ -3,7 +3,7 @@ using System.Collections;
 
 public enum SoundMode
 {
-    None, Beat, Generated
+    None, Sounds, All
 }
 
 public class Level : MonoBehaviour {
@@ -14,7 +14,7 @@ public class Level : MonoBehaviour {
 
     [SerializeField]
     //protected SoundMode soundMode = SoundMode.Generated;
-    protected SoundMode soundMode = SoundMode.Generated;
+    protected SoundMode soundMode = SoundMode.All;
     protected static float tickDuration = 1f; // 1 = 120bpm, 0.944889764 = 127bpm
     protected float nextTick;
 
@@ -51,7 +51,7 @@ public class Level : MonoBehaviour {
 
     protected GameObject spawnBomb(float x, float y = 0.05f, float? radius = 4, float explosionDelay = 4, float? teleDuration = 2)
     {
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
             music.StartBombCue(0, x);
 
         var bomb = bombs.Spawn(v2(x, y), false);
@@ -66,7 +66,7 @@ public class Level : MonoBehaviour {
     protected GameObject spawnCloud(float x, float y = 1f, float? size = 1f, float? startWaitDuration = 2f, float? thunderDuration = 2f, float? waitDuration = 2f, float? endWaitDuration = 2f, bool halfDuration = false)
     {
         // The option of 'halfDuration' has been disabled
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
             music.StartCloudCue(16 * tickDuration, x);
         
         var cloud = clouds.Spawn(v2(x, y), true);
@@ -98,7 +98,7 @@ public class Level : MonoBehaviour {
 
     IEnumerator Flood(float delay, float duration, bool fadeOut)
     {
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
         {
             //music.FadeInFloodMusic();
             music.StartFloodCue(duration * barLength, fadeOut);
@@ -114,7 +114,7 @@ public class Level : MonoBehaviour {
     // Calling and ending a flood manually
     protected void StartFlood()
     {
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
         {
             //music.FadeInFloodMusic();
             music.StartFloodCue(8f * barLength, false);
@@ -126,7 +126,7 @@ public class Level : MonoBehaviour {
     protected void EndFlood()
     {
         water.State = WaterState.Ebb;
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
         {
             music.FadeOutFloodMusic();
             ////music.EndFloodCue();
@@ -141,10 +141,8 @@ public class Level : MonoBehaviour {
 
     protected void PlayBackground()
     {
-        if (soundMode == SoundMode.Generated)
+        if (soundMode == SoundMode.All)
             music.PlayBackground();
-        if (soundMode == SoundMode.Beat)
-            music.PlayBeat();
     }
 
 
