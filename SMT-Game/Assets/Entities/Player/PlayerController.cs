@@ -79,14 +79,12 @@ public class PlayerController : MonoBehaviour {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
             isGrounded++;
         }
-        Debug.Log("Enter: " + isGrounded);
     }
 
     void OnCollisionExit2D(Collision2D collision) {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
             isGrounded--;
         }
-        Debug.Log("Exit: " + isGrounded);
     }
 
     // Update is called once per frame

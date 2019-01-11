@@ -25,7 +25,7 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 
-public enum WaterState { Ebb, Flood }
+public enum WaterState { Ebb, Middle, Flood }
 public class WaterScript : MonoBehaviour
 {
     public WaterState State { get { return state; } set { state = value; } }
@@ -35,7 +35,7 @@ public class WaterScript : MonoBehaviour
     Rigidbody2D rbody = null;
 
     [SerializeField]
-    Transform floodHeight = null, ebbHeight = null;
+    Transform floodHeight = null, middleHeight = null, ebbHeight = null;
 
     [SerializeField]
     float speed = 1, delay = 0;
@@ -71,11 +71,21 @@ public class WaterScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        float targetHeight = 0;
+
+        if (state == WaterState.Ebb) {
+            targetHeight = ebbHeight.position.y;
+        } else {
+            targetHeight = middleHeight.position.y;
+        }
+
         if (Time.time > startTime + delay)
         {
-            float targetHeight = state == WaterState.Ebb ? ebbHeight.position.y : floodHeight.position.y;
-            float speedMod = Mathf.Clamp(targetHeight - rbody.position.y, -1, 1);
-            rbody.velocity = new Vector2(0, speedMod * speed);
+            if (state == WaterState.Flood) {
+                targetHeight = floodHeight.position.y;
+            }
         }
+        float speedMod = Mathf.Clamp(targetHeight - rbody.position.y, -1, 1);
+        rbody.velocity = new Vector2(0, speedMod * speed);
     }
 }
