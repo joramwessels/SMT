@@ -7,8 +7,7 @@ public class MusicLevel : Level
     ////////////////////
     // TODO:
     // - Create level
-    // - (create level.cs/SpawnStar() function to include star music)?
-    // - game music modes
+    // - Star's don't disappear
 
     //float bar = 0.944889764f; // 1 bar at 127bpm
     //float beat = 0.4725f;
@@ -80,11 +79,18 @@ public class MusicLevel : Level
 
         // 55
         spawnCloud(-0.3f);
-        yield return WaitBars(4f);
+        yield return WaitBars(2f);
 
-        // 59
+        // 58
         spawnCloud(.3f);
-        yield return WaitBars(6f);
+        yield return WaitBars(7f);
+
+        //------------------------
+        // Stage 3: Climax
+        yield return WaitBars(1f);
+
+        // 65
+        
 
         //yield return WaitBars(8f);
         //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
