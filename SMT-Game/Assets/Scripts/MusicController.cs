@@ -158,6 +158,7 @@ public class MusicController : MonoBehaviour {
             else
             {
                 floodFadeOut = false;
+                StopSource(GetNewSource(2), 2);
             }
         }
     }

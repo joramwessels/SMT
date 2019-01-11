@@ -128,7 +128,7 @@ public class Level : MonoBehaviour {
         water.State = WaterState.Ebb;
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
         {
-            //music.FadeOutFloodMusic();
+            music.FadeOutFloodMusic();
             ////music.EndFloodCue();
             //music.FadeInBGMusic();
         }
