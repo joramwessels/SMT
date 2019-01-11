@@ -20,9 +20,10 @@ public class MusicLevel : Level
         rafts.Spawn(v2(-0.3f, -1f), true);
         yield return WaitBars(11f);
 
-        //------------------
+        //------------------------
         // Stage 1: Tutorial
         
+        // Getting to know the controls
         // 12
         stars.Spawn(v2(-0.5f, 2f), true);
         yield return WaitBars(2f);
@@ -31,6 +32,8 @@ public class MusicLevel : Level
         stars.Spawn(v2(.5f, 2f), true);
         yield return WaitBars(5f);
 
+
+        // Flood
         // 19
         StartFlood(5f, 26f, true);
         yield return WaitBars(2f);
@@ -44,6 +47,7 @@ public class MusicLevel : Level
         yield return WaitBars(10f);
 
 
+        // Bomb
         // 33
         var bomb1 = spawnBomb(0f, 0.05f, 4, 8, 6);
         yield return WaitBars(2f);
@@ -53,6 +57,7 @@ public class MusicLevel : Level
         yield return WaitBars(4f);
 
 
+        // Clouds
         // 39
         var cloud1 = spawnCloud(-0.5f, 1, 1);
         yield return WaitBars(1f);
@@ -63,7 +68,15 @@ public class MusicLevel : Level
 
         // 45
         var cloud2 = spawnCloud(0.5f, 1, 1);
-        yield return WaitBars(1f);
+        yield return WaitBars(6f);
+
+
+        //-----------------------
+        // Stage 2: breakdown
+        yield return WaitBars(4f);
+
+        // 51
+
 
         //yield return WaitBars(8f);
         //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);

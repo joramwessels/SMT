@@ -67,7 +67,7 @@ public class Level : MonoBehaviour {
     {
         // The option of 'halfDuration' has been disabled
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
-            music.StartCloudCue(16 * tickDuration, x);
+            music.StartCloudCue(16 * barLength, x);
         
         var cloud = clouds.Spawn(v2(x, y), true);
         float? waitTime = waitDuration * (barLength * .5f);
