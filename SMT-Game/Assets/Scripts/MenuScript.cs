@@ -51,13 +51,7 @@ public class MenuScript : MonoBehaviour {
     {
         InputField codeField = FindObjectOfType<InputField>();
         int code;
-        try
-        {
-            code = int.Parse(codeField.text);
-        } catch
-        {
-            code = 20242;
-        }
+        code = int.Parse(codeField.text);
         UserGroup group;
         try
         {

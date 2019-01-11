@@ -63,7 +63,7 @@ public class Level : MonoBehaviour {
         return bomb;
     }
 
-    protected GameObject spawnCloud(float x, float y = 1f, float? size = 1f, float? startWaitDuration = 2f, float? thunderDuration = 2f, float? waitDuration = 2f, float? endWaitDuration = 2f, bool halfDuration = false)
+    protected GameObject spawnCloud(float x, float y = 1f, float? size = 1f, float? startWaitDuration = 4f, float? thunderDuration = 1f, float? waitDuration = 3f, float? endWaitDuration = 3f, bool halfDuration = false)
     {
         // The option of 'halfDuration' has been disabled
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
