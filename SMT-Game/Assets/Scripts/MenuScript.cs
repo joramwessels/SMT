@@ -38,12 +38,12 @@ public class MenuScript : MonoBehaviour {
     public static string[] levelNames = new string[] { "MusicLevel", "Level1", "Cloudtopia" , "Bombmania" };
     public static SoundMode[][] soundOrders = new SoundMode[][]
     {
-        new SoundMode[] { SoundMode.None, SoundMode.Beat, SoundMode.Generated },
-        new SoundMode[] { SoundMode.Generated, SoundMode.Beat, SoundMode.None },
-        new SoundMode[] { SoundMode.Beat, SoundMode.None, SoundMode.Generated },
-        new SoundMode[] { SoundMode.Beat, SoundMode.Generated, SoundMode.None },
-        new SoundMode[] { SoundMode.Generated, SoundMode.None, SoundMode.Beat },
-        new SoundMode[] { SoundMode.None, SoundMode.Generated, SoundMode.Beat }
+        new SoundMode[] { SoundMode.None, SoundMode.Sounds, SoundMode.All },
+        new SoundMode[] { SoundMode.All, SoundMode.Sounds, SoundMode.None },
+        new SoundMode[] { SoundMode.Sounds, SoundMode.None, SoundMode.All },
+        new SoundMode[] { SoundMode.Sounds, SoundMode.All, SoundMode.None },
+        new SoundMode[] { SoundMode.All, SoundMode.None, SoundMode.Sounds },
+        new SoundMode[] { SoundMode.None, SoundMode.All, SoundMode.Sounds }
     };
     
 
@@ -122,70 +122,11 @@ public class MenuScript : MonoBehaviour {
 
     Dictionary<int, UserGroup> codeDict = new Dictionary<int, UserGroup>()
     {
-        { 64464, UserGroup.A },
-        { 51627, UserGroup.A },
-        { 39174, UserGroup.A },
-        { 85733, UserGroup.A },
-        { 71187, UserGroup.A },
-        { 28826, UserGroup.A },
-        { 37984, UserGroup.A },
-        { 32452, UserGroup.A },
-        { 42984, UserGroup.A },
-        { 93534, UserGroup.A },
-
-        { 20242, UserGroup.B },
-        { 35534, UserGroup.B },
-        { 38378, UserGroup.B },
-        { 61380, UserGroup.B },
-        { 51091, UserGroup.B },
-        { 29718, UserGroup.B },
-        { 65944, UserGroup.B },
-        { 64584, UserGroup.B },
-        { 93775, UserGroup.B },
-        { 27332, UserGroup.B },
-
-        { 12250, UserGroup.C },
-        { 79355, UserGroup.C },
-        { 92895, UserGroup.C },
-        { 34799, UserGroup.C },
-        { 50417, UserGroup.C },
-        { 22021, UserGroup.C },
-        { 74962, UserGroup.C },
-        { 18991, UserGroup.C },
-        { 49336, UserGroup.C },
-        { 23053, UserGroup.C },
-
-        { 35830, UserGroup.D },
-        { 10269, UserGroup.D },
-        { 40456, UserGroup.D },
-        { 68204, UserGroup.D },
-        { 57627, UserGroup.D },
-        { 10921, UserGroup.D },
-        { 34796, UserGroup.D },
-        { 26309, UserGroup.D },
-        { 80434, UserGroup.D },
-        { 23714, UserGroup.D },
-
-        { 24138, UserGroup.E },
-        { 29906, UserGroup.E },
-        { 84030, UserGroup.E },
-        { 18072, UserGroup.E },
-        { 68787, UserGroup.E },
-        { 31545, UserGroup.E },
-        { 41777, UserGroup.E },
-        { 74393, UserGroup.E },
-        { 62115, UserGroup.E },
-        { 66949, UserGroup.E },
-
-        { 49432, UserGroup.F },
-        { 76517, UserGroup.F },
-        { 72592, UserGroup.F },
-        { 48791, UserGroup.F },
-        { 73834, UserGroup.F },
-        { 54326, UserGroup.F },
-        { 25069, UserGroup.F },
-        { 82653, UserGroup.F },
-        { 80251, UserGroup.F },
-        { 13232, UserGroup.F }
+        { 1, UserGroup.A },
+        { 2, UserGroup.B },
+        { 3, UserGroup.C },
+        { 4, UserGroup.D },
+        { 5, UserGroup.E },
+        { 6, UserGroup.F }
     };
 }
