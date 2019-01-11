@@ -74,7 +74,7 @@ public class MusicController : MonoBehaviour {
             duration = source.clip.length * Level.getTickDuration();
         source.panStereo = stereo;
         source.Play();
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
         StopSource(source, channel);
     }
 
@@ -84,7 +84,7 @@ public class MusicController : MonoBehaviour {
         var source = GetNewSource(channel);
         if (explosionDelay >= 4)
         {
-            yield return new WaitForSeconds(explosionDelay - 4);
+            yield return new WaitForSecondsRealtime(explosionDelay - 4);
         }
         else
         {
