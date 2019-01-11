@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour {
 
     Vector3 initialPosition;
 
-    bool isGrounded;
+    [SerializeField]
+    int isGrounded;
 
     Rigidbody2D rbody;
     BoxCollider2D playerCollider;
@@ -71,24 +72,25 @@ public class PlayerController : MonoBehaviour {
         playerCollider = GetComponent<BoxCollider2D>();
         rbody = GetComponent<Rigidbody2D>();
         initialPosition = rbody.position;
-        isGrounded = true;
+        isGrounded = 0;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
-            isGrounded = true;
+            isGrounded++;
         }
+        Debug.Log("Enter: " + isGrounded);
     }
 
     void OnCollisionExit2D(Collision2D collision) {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
-            isGrounded = false;
+            isGrounded--;
         }
+        Debug.Log("Exit: " + isGrounded);
     }
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(isGrounded);
         if (Score != prevScore)
             scoreText.text = Score.ToString();
         if (Log.Tick != lastTick)
@@ -98,7 +100,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Jump() {
-        if (isGrounded) {
+        if (isGrounded > 0) {
             rbody.AddForce(new Vector2(0, 5f), ForceMode2D.Impulse);
         }
     }
