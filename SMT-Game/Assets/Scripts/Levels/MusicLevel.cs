@@ -6,9 +6,8 @@ public class MusicLevel : Level
 
     ////////////////////
     // TODO:
-    // - Create level
-    // - Star's don't disappear
-    // - Something isn't in sync
+    // - Finish level
+    // - Something about the Clouds and Bombs isn't in sync
 
     //float bar = 0.944889764f; // 1 bar at 127bpm
     //float beat = 0.4725f;
@@ -78,7 +77,11 @@ public class MusicLevel : Level
 
         // 45
         spawnCloud(0.5f, 1, 1);
-        yield return WaitBars(6f);
+        yield return WaitBars(1f);
+
+        // 55
+        stars.Spawn(v2(.7f, 2), true);
+        yield return WaitBars(5f);
 
 
         //-----------------------

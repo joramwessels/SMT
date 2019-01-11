@@ -18,12 +18,16 @@ public class Level : MonoBehaviour {
     protected static float tickDuration = 1f; // 1 = 120bpm, 0.944889764 = 127bpm
     protected float nextTick;
 
-    float barLength = 0.944889764f * 2; // 1 bar at 127bpm
+    protected static float barLength = 0.944889764f * 2; // 1 bar at 127bpm
 
     bool finished = false;
     public static float getTickDuration() {
         return tickDuration;
         }
+    public static float getBarLength()
+    {
+        return barLength;
+    }
     
 
     // Use this for initialization
@@ -52,7 +56,7 @@ public class Level : MonoBehaviour {
     protected GameObject spawnBomb(float x, float y = 0.05f, float? radius = 4, float explosionDelay = 8, float? teleDuration = 6)
     {
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
-            music.StartBombCue(0, x);
+            music.StartBombCue(-1, x);
 
         var bomb = bombs.Spawn(v2(x, y), false);
         float delay = explosionDelay * (barLength * .5f);

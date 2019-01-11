@@ -74,30 +74,24 @@ public class MusicController : MonoBehaviour {
             duration = source.clip.length * Level.getTickDuration();
         source.panStereo = stereo;
         source.Play();
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
         StopSource(source, channel);
     }
 
-    IEnumerator bombCue(float explosionDelay, float stereo)
-    {
-        var channel = 1;
-        var source = GetNewSource(channel);
-        if (explosionDelay >= 4)
-        {
-            yield return new WaitForSecondsRealtime(explosionDelay - 4);
-        }
-        else
-        {
-            source.pitch = (4*(1/explosionDelay));
-        }
-        
-        source.Play();
-    }
-    
-    public void PlayBeep()
-    {
-        PlayForDuration(4, 1, 1f);
-    }
+    //IEnumerator bombCue(float explosionDelay, float stereo)
+    //{
+    //    var channel = 1;
+    //    var source = GetNewSource(channel);
+    //    if (explosionDelay >= 4)
+    //    {
+    //        yield return new WaitForSeconds(explosionDelay - 4);
+    //    }
+    //    else
+    //    {
+    //        source.pitch = (4*(1/explosionDelay));
+    //    }
+    //    source.Play();
+    //}
 
     public void PlayBackground()
     {
@@ -182,9 +176,10 @@ public class MusicController : MonoBehaviour {
         floodFadeIn = true;
     }
 
-    public void StartBombCue(float explosionDelay, float stereo)
+    public void StartBombCue(float duration, float stereo)
     {
-        StartCoroutine(bombCue(explosionDelay, stereo));
+        //StartCoroutine(bombCue(explosionDelay, stereo));
+        StartCoroutine(PlayForDuration(1, duration, stereo));
     }
 
     IEnumerator CloudCue(float duration, float stereo)
