@@ -31,7 +31,6 @@ public class MusicLevel : Level
         stars.Spawn(v2(.5f, 2f), true);
         yield return WaitBars(5f);
 
-
         // 19
         StartFlood(5f, 26f, true);
         yield return WaitBars(2f);
@@ -42,34 +41,29 @@ public class MusicLevel : Level
 
         // 23
         stars.Spawn(v2(.8f, 2f), true);
-        yield return WaitBars(8f);
+        yield return WaitBars(10f);
 
 
-        // 31
+        // 33
         var bomb1 = spawnBomb(0f, 0.05f, 4, 8, 6);
         yield return WaitBars(2f);
 
-        // 33
+        // 35
         stars.Spawn(v2(-.8f, 2f), true);
         yield return WaitBars(4f);
 
 
-        // 37
+        // 39
         var cloud1 = spawnCloud(-0.5f, 1, 1);
         yield return WaitBars(1f);
 
-        // 38
+        // 40
         stars.Spawn(v2(.8f, 2f), true);
-        yield return WaitBars(3f);
+        yield return WaitBars(5f);
 
-        // 41
+        // 45
         var cloud2 = spawnCloud(0.5f, 1, 1);
         yield return WaitBars(1f);
-
-        // 42
-        yield return WaitBars(8f);
-
-        // 63
 
         //yield return WaitBars(8f);
         //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
