@@ -31,13 +31,14 @@ public class StarScript : MonoBehaviour {
     PlayerController player;
 
     float duration = 5;
+    float startTime;
     bool isPickedUp = false;
 
     void Start()
     {
         GetComponent<ParticleSystem>().Play();
         isPickedUp = false;
-        Destroy(gameObject, duration);
+        startTime = Time.time;
     }
 
     void OnEnable()
@@ -56,6 +57,13 @@ public class StarScript : MonoBehaviour {
                 player.Hit("star");
             ObjectPool.Despawn(gameObject, "star pool");
            
+        }
+    }
+
+    void Update() {
+        if (Time.time > startTime + duration) {
+            gameObject.tag = "Pooled";
+            Destroy(gameObject);
         }
     }
 }
