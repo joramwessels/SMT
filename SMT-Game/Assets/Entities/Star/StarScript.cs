@@ -30,12 +30,14 @@ public class StarScript : MonoBehaviour {
     [SerializeField]
     PlayerController player;
 
+    float duration = 5;
     bool isPickedUp = false;
 
     void Start()
     {
         GetComponent<ParticleSystem>().Play();
         isPickedUp = false;
+        Destroy(gameObject, duration);
     }
 
     void OnEnable()
