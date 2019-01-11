@@ -49,7 +49,7 @@ public class Level : MonoBehaviour {
         }
     }
 
-    protected GameObject spawnBomb(float x, float y = 0.05f, float? radius = 4, float explosionDelay = 4, float? teleDuration = 2)
+    protected GameObject spawnBomb(float x, float y = 0.05f, float? radius = 4, float explosionDelay = 8, float? teleDuration = 6)
     {
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
             music.StartBombCue(0, x);
