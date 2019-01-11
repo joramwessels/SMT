@@ -32,10 +32,9 @@ public class MusicLevel : Level
         stars.Spawn(v2(.5f, 2f), true);
         yield return WaitBars(5f);
 
-
         // Flood
         // 19
-        StartFlood(5f, 26f, true);
+        StartFlood(5f, 26f, false);
         yield return WaitBars(2f);
 
         // 21
@@ -76,7 +75,16 @@ public class MusicLevel : Level
         yield return WaitBars(4f);
 
         // 51
+        StartFlood(5f, 52f, false);
+        yield return WaitBars(8f);
 
+        // 55
+        spawnCloud(-0.3f);
+        yield return WaitBars(4f);
+
+        // 59
+        spawnCloud(.3f);
+        yield return WaitBars(6f);
 
         //yield return WaitBars(8f);
         //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);

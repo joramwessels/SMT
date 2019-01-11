@@ -216,5 +216,6 @@ public class MusicController : MonoBehaviour {
 
         }
         StopSource(floodMusic, 2);
+        floodMusic.volume = 0.8f;
     }
 }
