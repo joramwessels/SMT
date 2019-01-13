@@ -7,145 +7,129 @@ public class MusicLevel : Level
     ////////////////////
     // TODO:
     // - Finish level
-    // - Something about the Clouds and Bombs isn't in sync
-
-    //float bar = 0.944889764f; // 1 bar at 127bpm
-    //float beat = 0.4725f;
+    // - Make questionnaire
+    // - "Try Again" changes sound mode
 
 
     protected override IEnumerator LevelScript()
     {
         PlayBackground();
         rafts.Spawn(v2(-0.3f, -1f), true);
-        yield return WaitBars(11f);
 
         //------------------------
         // Stage 1: Tutorial
-        
+
 
         // Getting to know the controls
-        // 12
+        // 10
+        yield return GoToBar(10);
         stars.Spawn(v2(-0.5f, 2f), true);
-        yield return WaitBars(2f);
 
-        // 14
+        // 12
+        yield return GoToBar(12);
         stars.Spawn(v2(.5f, 2f), true);
-        yield return WaitBars(5f);
+
+        // 16
+        yield return GoToBar(16);
+        stars.Spawn(v2(-.65f, 2f), true);
+
+        // 17
+        yield return GoToBar(17);
+        stars.Spawn(v2(.65f, 2f), true);
 
 
         // Flood
         // 19
+        yield return GoToBar(19);
         StartFlood(5f, 20f, false);
-        yield return WaitBars(2f);
 
         // 21
+        yield return GoToBar(21);
         stars.Spawn(v2(-.8f, 2f), true);
-        yield return WaitBars(2f);
 
         // 23
+        yield return GoToBar(23);
         stars.Spawn(v2(.8f, 2f), true);
-        yield return WaitBars(2f);
 
         // 25
+        yield return GoToBar(25);
         spawnCloud(.3f);
-        yield return WaitBars(8f);
+
+        // 26
+        yield return GoToBar(26);
+        stars.Spawn(v2(.3f, 2f), true);
 
 
         // Bomb
-        // 33
+        // 32
+        yield return GoToBar(31);
         spawnBomb(0f, 0.05f, 4);
-        yield return WaitBars(3f);
-
-        // 35
-        stars.Spawn(v2(-.8f, 2f), true);
-        yield return WaitBars(1f);
 
         // 36
+        yield return GoToBar(36);
         stars.Spawn(v2(.8f, 2f), true);
+
+        // 37
+        yield return GoToBar(37);
+        stars.Spawn(v2(-.8f, 2f), true);
         spawnBomb(.6f, 0.05f, 3);
-        yield return WaitBars(2f);
+        spawnBomb(-.6f, .05f, 3);
+
+        // 38
+        yield return GoToBar(38);
+        stars.Spawn(v2(.7f, 2f), true);
 
 
         // Clouds
         // 39
+        yield return GoToBar(39);
         spawnCloud(-0.5f, 1, 1);
-        yield return WaitBars(1f);
 
         // 40
+        yield return GoToBar(40);
         stars.Spawn(v2(-.9f, 2f), true);
-        yield return WaitBars(5f);
 
         // 45
+        yield return GoToBar(45);
         spawnCloud(0.5f, 1, 1);
-        yield return WaitBars(1f);
+        spawnCloud(-.5f, 1, 1);
 
-        // 55
+        // 46
+        yield return GoToBar(46);
         stars.Spawn(v2(.7f, 2), true);
-        yield return WaitBars(5f);
+
+        // 47
+        yield return GoToBar(47);
+        stars.Spawn(v2(-.4f, 2), true);
 
 
         //-----------------------
         // Stage 2: breakdown
-        yield return WaitBars(4f);
 
-        // 51
-        StartFlood(5f, 30f, false);
-        yield return WaitBars(8f);
-
-        // 55
-        spawnCloud(-0.3f);
-        yield return WaitBars(1f);
-
-        // 58
-        spawnCloud(.3f);
-        yield return WaitBars(6f);
+        // 56
+        yield return GoToBar(56);
+        StartFlood(5f, 32f, false);
 
         // 64
+        yield return GoToBar(64);
+        spawnCloud(-0.3f);
+
+        // 65
+        yield return GoToBar(65);
+        spawnCloud(.3f);
+
+        // 69
+        yield return GoToBar(69);
         stars.Spawn(v2(.3f, 2), true);
-        yield return WaitBars(2f);
 
         //------------------------
         // Stage 3: Climax
-        yield return WaitBars(1f);
 
-        // 65
+        // 74
+        yield return GoToBar(74f);
 
 
-        // test
-        yield return WaitBars(16f);
-        spawnCloud(0);
-        yield return WaitBars(8f);
-        // test
-
-        //yield return WaitBars(8f);
-        //var bomb2 = spawnBomb(-0.5f, 0.05f, 4, 8, 6);
-        //yield return WaitBars(8f);
-        //var cloud3 = spawnCloud(-0.5f, 1, 1, 4f, 1f, 3f, 3f);
-        //yield return WaitBars(8f);
-
-        /*//0
-        var bomb1 = spawnBomb(-0.5f, 0.05f, 4, 4, 2);
-        var star1 = stars.Spawn(v2(0.9f, 1f), true);
-        var star2 = stars.Spawn(v2(-0.9f, 1f), true);
-        PlayBackground();
-        yield return WaitTick(4);
-        //4
-        var cloud1 = spawnCloud(-0.5f, 0.05f, 1, 2, 2);
-        yield return WaitTick(4);
-        //8
-        var star3 = stars.Spawn(v2(-0.2f, 1f), true);
-        yield return WaitTick(3);
-        //11
-        ObjectPool.Despawn(star1, "star pool");
-        ObjectPool.Despawn(star2, "star pool");
-        StartFlood();
-        yield return WaitTick(1);
-        //12
-        ObjectPool.Despawn(cloud1, "cloud pool");
-        yield return WaitTick(4);
-        //16
-        EndFlood();
-        ObjectPool.Despawn(star3, "star pool");*/
+        yield return GoToBar(111f);
         yield return WaitTick(4);
         yield return base.LevelScript();
     }

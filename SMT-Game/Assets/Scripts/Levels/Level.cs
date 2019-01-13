@@ -19,6 +19,7 @@ public class Level : MonoBehaviour {
     protected float nextTick;
 
     protected static float barLength = 0.944889764f * 2; // 1 bar at 127bpm
+    protected static float barSeconds = 1.88976377952755905511811f; // 1 bar at 127bpm in seconds
 
     bool finished = false;
     public static float getTickDuration() {
@@ -28,7 +29,8 @@ public class Level : MonoBehaviour {
     {
         return barLength;
     }
-    
+
+    System.DateTime startTimeOfBackgroundMusic;
 
     // Use this for initialization
     void Start () {
@@ -138,13 +140,9 @@ public class Level : MonoBehaviour {
         }
     }
 
-    protected void PlayBeep()
-    {
-        music.PlayBeep();
-    }
-
     protected void PlayBackground()
     {
+        startTimeOfBackgroundMusic = System.DateTime.Now; // logs the exact time within the frame
         if (soundMode == SoundMode.All)
             music.PlayBackground();
     }
@@ -171,7 +169,15 @@ public class Level : MonoBehaviour {
 
     protected IEnumerator WaitBars(float bars)
     {
-        yield return new WaitForSecondsRealtime(bars * barLength);
+        //yield return new WaitForSecondsRealtime(bars * barLength);
+        yield return new WaitForSecondsRealtime(0);
+    }
+
+    protected IEnumerator GoToBar(float bar)
+    {
+        System.DateTime sleepUntil = startTimeOfBackgroundMusic + new System.TimeSpan(0, 0, 0, 0, (int)((bar-1) * barSeconds * 1000));
+        System.TimeSpan duration = sleepUntil - System.DateTime.Now;
+        yield return new WaitForSecondsRealtime((float)duration.Seconds + (float)duration.Milliseconds / 1000.0f);
     }
 
     public static Vector2 v2(float x, float y)

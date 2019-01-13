@@ -63,7 +63,7 @@ public class StarScript : MonoBehaviour {
     void Update() {
         if (Time.time > startTime + duration) {
             gameObject.tag = "Pooled";
-            Destroy(gameObject);
+            ObjectPool.Despawn(gameObject, "star pool");
         }
     }
 }
