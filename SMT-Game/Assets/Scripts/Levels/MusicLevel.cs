@@ -19,12 +19,6 @@ public class MusicLevel : Level
         //------------------------
         // Stage 1: Tutorial
 
-        // Testing purposes
-        // 2
-        //yield return GoToBar(2);
-        //spawnCloud(0f, 1, -2f);
-        //spawnCloud(.3f, 1, 4f);
-
         // Getting to know the controls
         // 10
         yield return GoToBar(10);
