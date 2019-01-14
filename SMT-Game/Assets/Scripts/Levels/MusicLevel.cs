@@ -83,7 +83,7 @@ public class MusicLevel : Level
         // Clouds
         // 39
         yield return GoToBar(39);
-        spawnCloud(-0.5f, 1, 1);
+        spawnCloud(-0.5f, 1);
 
         // 40
         yield return GoToBar(40);
@@ -91,8 +91,8 @@ public class MusicLevel : Level
 
         // 45
         yield return GoToBar(45);
-        spawnCloud(0.5f, 1, 1);
-        spawnCloud(-.5f, 1, 1);
+        spawnCloud(0.5f, 1);
+        spawnCloud(-.5f, 1);
 
         // 46
         yield return GoToBar(46);
