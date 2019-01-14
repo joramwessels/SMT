@@ -44,11 +44,11 @@ public class MusicLevel : Level
 
         // 16
         yield return GoToBar(16);
-        stars.Spawn(v2(-.75f, 2f), true);
+        stars.Spawn(v2(-.65f, 2f), true);
 
         // 17
         yield return GoToBar(17);
-        stars.Spawn(v2(.8f, 2f), true);
+        stars.Spawn(v2(.65f, 2f), true);
 
 
         // Flood
@@ -117,6 +117,10 @@ public class MusicLevel : Level
         yield return GoToBar(41.5f);
         stars.Spawn(v2(.9f, 2), true);
 
+        // 44
+        yield return GoToBar(44);
+        spawnBomb(0, .05f, 3);
+
         // 45
         yield return GoToBar(45);
         spawnCloud(0.5f, 1);
@@ -144,13 +148,13 @@ public class MusicLevel : Level
         yield return GoToBar(55);
         stars.Spawn(v2(.65f, 34), true);
         yield return GoToBar(55.5f);
-        stars.Spawn(v2(-.3f, 29), true);
+        stars.Spawn(v2(.3f, 31), true);
         yield return GoToBar(55.75f);
         stars.Spawn(v2(.5f, 38), true);
 
         // 56
         yield return GoToBar(56);
-        StartFlood(5f, 29f, false);
+        StartFlood(5f, 28.5f, false);
 
         // Star Rain
         yield return GoToBar(56);
@@ -165,7 +169,7 @@ public class MusicLevel : Level
         stars.Spawn(v2(.1f, 48), true);
         stars.Spawn(v2(-.85f, 44), true);
         yield return GoToBar(57);
-        stars.Spawn(v2(.25f, 28), true);
+        stars.Spawn(v2(.25f, 21), true);
         stars.Spawn(v2(-.45f, 38), true);
         stars.Spawn(v2(.65f, 40), true);
         stars.Spawn(v2(-.75f, 45), true);
@@ -228,6 +232,7 @@ public class MusicLevel : Level
         // 75
         yield return GoToBar(75);
         StartFlood(5f, 30f, false);
+        spawnCloud(-.95f, 1f, .7f);
 
         // 77
         yield return GoToBar(77);
@@ -244,21 +249,21 @@ public class MusicLevel : Level
         // 81
         yield return GoToBar(81);
         spawnBomb(.7f, .05f, 4f);
-        spawnCloud(-.9f, 1, 1);
+        spawnCloud(-.9f, 1, 1f);
 
         // 82
         yield return GoToBar(82);
         stars.Spawn(v2(.3f, 2), true);
+        spawnCloud(.6f, 1, -.7f);
 
         // 83
         yield return GoToBar(83);
         spawnBomb(-.7f, .05f, 4f);
-        spawnCloud(-.9f, 1, 1);
         stars.Spawn(v2(-.3f, 2), true);
 
         // 85
         yield return GoToBar(85);
-        spawnCloud(-.9f, 1, 1);
+        spawnCloud(-.9f, 1, 1f);
         stars.Spawn(v2(.3f, 2), true);
 
         // 86
@@ -283,8 +288,6 @@ public class MusicLevel : Level
         yield return GoToBar(91);
         stars.Spawn(v2(-.3f, 2), true);
         stars.Spawn(v2(.3f, 2), true);
-        spawnCloud(.85f);
-        spawnCloud(-.85f);
 
         yield return GoToBar(111f);
         yield return WaitTick(4);
