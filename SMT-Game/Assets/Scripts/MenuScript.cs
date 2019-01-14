@@ -77,12 +77,10 @@ public class MenuScript : MonoBehaviour {
         if(state == "game")
         {
             Log.EndAttempt();
-            if (Log.Attempt < 5)
+            if (Log.Attempt < 5) {
                 SceneManager.LoadScene("main");
-            else
-            {
-                if (Log.IsSessionInProgress)
-                {
+            } else {
+                if (Log.IsSessionInProgress) {
                     Log.EndLevel();
                 }
                 state = levelID < 2 ? "midQ" : "endQ";
