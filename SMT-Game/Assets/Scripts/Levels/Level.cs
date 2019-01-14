@@ -184,7 +184,7 @@ public class Level : MonoBehaviour {
     {
         System.DateTime sleepUntil = startTimeOfBackgroundMusic + new System.TimeSpan(0, 0, 0, 0, (int)((bar-1) * barSeconds * 1000));
         System.TimeSpan duration = sleepUntil - System.DateTime.Now;
-        yield return new WaitForSecondsRealtime((float)duration.Seconds + (float)duration.Milliseconds / 1000.0f);
+        yield return new WaitForSecondsRealtime((float)duration.Minutes * 60.0f + (float)duration.Seconds + (float)duration.Milliseconds / 1000.0f);
     }
 
     public static Vector2 v2(float x, float y)

@@ -36,19 +36,19 @@ public class MusicLevel : Level
 
         // 14
         yield return GoToBar(14);
-        stars.Spawn(v2(-.65f, 2f), true);
+        stars.Spawn(v2(-.55f, 2f), true);
 
         // 15
         yield return GoToBar(15);
-        stars.Spawn(v2(.65f, 2f), true);
+        stars.Spawn(v2(.55f, 2f), true);
 
         // 16
         yield return GoToBar(16);
-        stars.Spawn(v2(-.65f, 2f), true);
+        stars.Spawn(v2(-.55f, 2f), true);
 
         // 17
         yield return GoToBar(17);
-        stars.Spawn(v2(.65f, 2f), true);
+        stars.Spawn(v2(.55f, 2f), true);
 
 
         // Flood
@@ -105,7 +105,7 @@ public class MusicLevel : Level
         // Clouds
         // 39
         yield return GoToBar(39);
-        spawnCloud(-0.5f, 1);
+        spawnCloud(-0.65f, 1);
 
         // 40
         yield return GoToBar(40);
@@ -113,7 +113,7 @@ public class MusicLevel : Level
 
         // 41
         yield return GoToBar(41);
-        spawnCloud(.8f);
+        spawnCloud(.65f);
         yield return GoToBar(41.5f);
         stars.Spawn(v2(.9f, 2), true);
 
@@ -220,7 +220,7 @@ public class MusicLevel : Level
         //------------------------
         // Stage 3: Climax
 
-        // Moving clouds intro
+        // Introducing moving clouds
         // 74
         yield return GoToBar(74);
         spawnBomb(-.7f, .05f, 3);
@@ -232,13 +232,14 @@ public class MusicLevel : Level
         // 75
         yield return GoToBar(75);
         StartFlood(5f, 30f, false);
-        spawnCloud(-.95f, 1f, .7f);
+        spawnCloud(.95f, 1f, .7f);
 
         // 77
         yield return GoToBar(77);
         spawnCloud(0);
         stars.Spawn(v2(-.2f, 1), true);
         stars.Spawn(v2(.2f, 3), true);
+
 
         // Approaching storm on sea
         // 78
@@ -263,31 +264,40 @@ public class MusicLevel : Level
 
         // 85
         yield return GoToBar(85);
-        spawnCloud(-.9f, 1, 1f);
         stars.Spawn(v2(.3f, 2), true);
 
         // 86
         yield return GoToBar(86);
         stars.Spawn(v2(-.4f, 2), true);
 
-        // 87
-        yield return GoToBar(87);
-        stars.Spawn(v2(.4f, 2), true);
-
 
         // Sandwiched by storms
         // 87
         yield return GoToBar(87);
         spawnBomb(0, .05f, 3);
+        stars.Spawn(v2(.4f, 2), true);
+
         // 89
         yield return GoToBar(89);
         spawnCloud(.85f, 1, -1);
         spawnCloud(-.85f, 1, 1);
+        StartFlood(5f, 15, false);
+
+        // 90
+        yield return GoToBar(90);
+        spawnBomb(.7f, .05f, 2);
+        spawnBomb(-.7f, .05f, 2);
 
         // 91
         yield return GoToBar(91);
-        stars.Spawn(v2(-.3f, 2), true);
-        stars.Spawn(v2(.3f, 2), true);
+        stars.Spawn(v2(-.75f, 2), true);
+        stars.Spawn(v2(.75f, 2), true);
+
+        // 92
+        yield return GoToBar(92);
+        spawnCloud(0, 1, -.5f);
+        spawnCloud(0, 1, .5f);
+        stars.Spawn(v2(0, 2), true);
 
         yield return GoToBar(111f);
         yield return WaitTick(4);
