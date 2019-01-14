@@ -69,7 +69,7 @@ public class Level : MonoBehaviour {
         return bomb;
     }
 
-    protected GameObject spawnCloud(float x, float y = 1f, float? startWaitDuration = 4f, float? thunderDuration = 1f, float? waitDuration = 3f, float? endWaitDuration = 3f, bool halfDuration = false)
+    protected GameObject spawnCloud(float x, float y = 1f, float velocity = 0f, float? startWaitDuration = 4f, float? thunderDuration = 1f, float? waitDuration = 3f, float? endWaitDuration = 3f, bool halfDuration = false)
     {
         // The option of 'halfDuration' has been disabled
         if (soundMode == SoundMode.All || soundMode == SoundMode.Sounds)
@@ -80,6 +80,13 @@ public class Level : MonoBehaviour {
         float? thunderTime = thunderDuration * (barLength * .5f);
         float? startWaitTime = startWaitDuration * (barLength * .5f);
         float? endWaitTime = endWaitDuration * (barLength * .5f);
+
+        if (velocity != 0f) {
+            Rigidbody2D cRB = cloud.AddComponent<Rigidbody2D>();
+            cRB.velocity += new Vector2(velocity, 0);
+            cRB.gravityScale = 0;
+        }
+
         cloud.GetComponent<CloudScript>().SetProperties(1, waitTime, thunderTime, startWaitTime, endWaitTime);
         cloud.gameObject.SetActive(true);
         

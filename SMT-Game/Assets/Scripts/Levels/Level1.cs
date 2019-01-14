@@ -15,8 +15,8 @@ public class Level1 : Level {
 
         yield return WaitTick(4);
 
-        var cloudLeft = spawnCloud(-0.5f, 1, 2f, 2f, 2f, 2f);
-        var cloudRight = spawnCloud(0.5f, 1, 2f, 2f, 2f, 2f);
+        var cloudLeft = spawnCloud(-0.5f, 1, 0f, 2f, 2f, 2f, 2f);
+        var cloudRight = spawnCloud(0.5f, 1, 0f, 2f, 2f, 2f, 2f);
         var starMiddle = stars.Spawn(v2(0, 1), true);
 
         yield return WaitTick(2);
@@ -54,20 +54,13 @@ public class Level1 : Level {
 
         yield return WaitTick(2);
 
-        cloudLeft = spawnCloud(-0.8f, 1, 2, 2, 2f, 2f);
-        cloudRight = spawnCloud(0.8f, 1, 2f, 2f, 2f, 2f);
+        cloudLeft = spawnCloud(-0.8f, 1, 0f, 2, 2, 2f, 2f);
+        cloudRight = spawnCloud(0.8f, 1, 0f, 2f, 2f, 2f, 2f);
         starLeft = stars.Spawn(v2(-0.8f, 1f), true);
         var starRight = stars.Spawn(v2(0.8f, 1f), true);
-        var movingCloud = spawnCloud(orientation * 0.7f, 1, 2f, 2f, 2f, 2f);
-        Rigidbody2D mcRB = movingCloud.AddComponent<Rigidbody2D>();
-        mcRB.velocity += new Vector2(-orientation * 2f, 0);
-        mcRB.gravityScale = 0;
+        var movingCloud = spawnCloud(orientation * 0.7f, 1, 2f, 2f, 2f, 2f, 2f);
 
-        yield return WaitTick(4);
-
-        mcRB.velocity -= new Vector2(-orientation * 4f, 0);
-
-        yield return WaitTick(2);
+        yield return WaitTick(6);
 
         ObjectPool.Despawn(starLeft, "star pool");
         ObjectPool.Despawn(starRight, "star pool");
@@ -82,8 +75,8 @@ public class Level1 : Level {
 
         yield return WaitTick(4);
 
-        spawnCloud(-0.3f, 1, 2f, 2f, 2f, 2f);
-        spawnCloud(0.3f, 1, 2f, 2f, 2f, 2f);
+        spawnCloud(-0.3f, 1, 0f, 2f, 2f, 2f, 2f);
+        spawnCloud(0.3f, 1, 0f, 2f, 2f, 2f, 2f);
         EndFlood();
         ObjectPool.Despawn(randomStar, "star pool");
 
@@ -94,14 +87,8 @@ public class Level1 : Level {
 
         yield return WaitTick(1);
 
-        movingCloud = spawnCloud(orientation * 0.7f, 1, 2f, 2f, 2f, 2f, true);
-        mcRB = movingCloud.AddComponent<Rigidbody2D>();
-        mcRB.velocity += new Vector2(-orientation * 2f, 0);
-        mcRB.gravityScale = 0;
-        var movingCloud2 = spawnCloud(-orientation * 0.7f, 1, 2f, 2f, 2f, 2f, true);
-        Rigidbody2D mcRB2 = movingCloud2.AddComponent<Rigidbody2D>();
-        mcRB2.velocity += new Vector2(orientation * 2f, 0);
-        mcRB2.gravityScale = 0;
+        movingCloud = spawnCloud(orientation * 0.7f, 1, 2f, 2f, 2f, 2f, 2f, true);
+        var movingCloud2 = spawnCloud(-orientation * 0.7f, 1, 2f, 2f, 2f, 2f, 2f, true);
 
         yield return WaitTick(4);
         

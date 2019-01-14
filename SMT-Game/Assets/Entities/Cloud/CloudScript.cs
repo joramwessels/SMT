@@ -29,6 +29,9 @@ public class CloudScript : MonoBehaviour {
 
     GameObject lightning;
 
+    Transform leftBound;
+    Transform rightBound;
+
     [SerializeField]
     // The event exists of: startWaitTime, thunderTime, waitTime, thunderTime, endWaitTime
     float size = 5, startWaitTime = 1, waitTime = 1, thunderTime = 3, endWaitTime = 1;
@@ -52,6 +55,8 @@ public class CloudScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        leftBound = GameObject.Find("LeftBounds").transform;
+        rightBound = GameObject.Find("RightBounds").transform;
         lightning = transform.GetChild(0).gameObject;
         spawn_time = Time.time;
     }
@@ -69,7 +74,10 @@ public class CloudScript : MonoBehaviour {
     void FixedUpdate()
     {
         if (gameObject.GetComponent<Rigidbody2D>() != null) {
-            Debug.Log("yes");
+            if ((gameObject.transform.position.x < leftBound.transform.position.x && gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
+                || (gameObject.transform.position.x > rightBound.transform.position.x && gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)) {
+                gameObject.GetComponent<Rigidbody2D>().velocity -= new Vector2(2 * gameObject.GetComponent<Rigidbody2D>().velocity.x, 0);
+            }
         }
 
         // Termination
