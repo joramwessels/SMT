@@ -35,7 +35,7 @@ public class InputHandler : MonoBehaviour {
         var inputX = Input.GetAxis("Horizontal");
         player.SetDirection(inputX);
 
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
             player.Jump();
         }
     }
