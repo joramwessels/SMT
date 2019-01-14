@@ -37,9 +37,6 @@ public class CloudScript : MonoBehaviour {
 
     public void SetProperties(float? size, float? waitTime, float? thunderTime, float? startWaitTime, float? endWaitTime)
     {
-        if (gameObject.activeSelf)
-            Debug.LogWarning("Adjusting cloud properties while it's active, behaviour might not be as expected");
-
         if (size.HasValue)
             this.size = size.Value;
         if (waitTime.HasValue)
@@ -71,6 +68,10 @@ public class CloudScript : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (gameObject.GetComponent<Rigidbody2D>() != null) {
+            Debug.Log("yes");
+        }
+
         // Termination
         if (Time.fixedTime >= spawn_time + startWaitTime + waitTime + 2 * thunderTime + endWaitTime)
         {
