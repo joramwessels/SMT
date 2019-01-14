@@ -128,6 +128,9 @@ public class MusicLevel : Level
         yield return GoToBar(47);
         stars.Spawn(v2(-.4f, 2), true);
 
+        // 51
+        yield return GoToBar(51);
+        spawnBomb(0, .05f, 5);
 
         //-----------------------
         // Stage 2: breakdown
@@ -310,6 +313,11 @@ public class MusicLevel : Level
         yield return GoToBar(95);
         spawnBomb(-.3f, .2f, 2);
         stars.Spawn(v2(-.3f, 2), true);
+
+        // 97
+        yield return GoToBar(97);
+        spawnCloud(-.9f, 1, -1);
+        spawnCloud(.9f, 1, 1);
 
         yield return GoToBar(111f);
         yield return WaitTick(4);
