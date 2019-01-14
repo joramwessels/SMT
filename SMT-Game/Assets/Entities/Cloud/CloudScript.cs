@@ -69,6 +69,7 @@ public class CloudScript : MonoBehaviour {
     void OnDisable()
     {
         StopAllCoroutines();
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
     }
 
     void FixedUpdate()

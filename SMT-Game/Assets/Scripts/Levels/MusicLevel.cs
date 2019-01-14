@@ -281,8 +281,8 @@ public class MusicLevel : Level
         spawnBomb(0, .05f, 3);
         // 89
         yield return GoToBar(89);
-        spawnCloud(.85f, 1, -1);
-        spawnCloud(-.85f, 1, 1);
+        spawnCloud(.85f, 1, -1f);
+        spawnCloud(-.85f, 1, 1f);
 
         // 91
         yield return GoToBar(91);
