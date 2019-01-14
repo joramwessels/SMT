@@ -63,10 +63,12 @@ public class CloudScript : MonoBehaviour {
     {
         Start();
     }
+
     void OnDisable()
     {
         StopAllCoroutines();
     }
+
     void FixedUpdate()
     {
         // Termination
