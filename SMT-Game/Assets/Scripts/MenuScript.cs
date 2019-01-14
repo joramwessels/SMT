@@ -74,36 +74,22 @@ public class MenuScript : MonoBehaviour {
         if (!Log.IsSessionInProgress)
             throw new Exception("only valid when session in progress");
 
-        if(state == "game")
-        {
-            Log.EndAttempt();
-            if (Log.Attempt < 5) {
-                SceneManager.LoadScene("main");
-            } else {
-                if (Log.IsSessionInProgress) {
-                    Log.EndLevel();
-                }
-                state = levelID < 2 ? "midQ" : "endQ";
-                SceneManager.LoadScene("question");
-            }
-            return;
-        }
-        else if (state == "midQ")
+        if (state == "game")
         {
             //go to the next level
-            state = "game";
-            levelID++;
-            Log.SetLevel(soundOrders[(int)Log.UserGroup][levelID], levelNames[levelID]);
-            SceneManager.LoadScene("main");
-        }
-       
-        else if (state == "finished")
-        {
-            state = "";
+            if (levelID < 2) {
+                state = "game";
+                levelID++;
+                Log.SetLevel(soundOrders[(int)Log.UserGroup][levelID], levelNames[0]);
+                SceneManager.LoadScene("main");
+            } else {
+                state = "";
 
-            Log.EndSession();
-            Log.Close();
-            SceneManager.LoadScene("exit");
+                Log.EndSession();
+                Log.Close();
+                SceneManager.LoadScene("exit");
+            }
+            
         }
     }
 
