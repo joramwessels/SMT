@@ -128,9 +128,15 @@ public class MusicLevel : Level
         yield return GoToBar(47);
         stars.Spawn(v2(-.4f, 2), true);
 
+        // 50
+        yield return GoToBar(50);
+        spawnBomb(0, .05f, 5);
+
         // 51
         yield return GoToBar(51);
-        spawnBomb(0, .05f, 5);
+        stars.Spawn(v2(-.8f, 2), true);
+        yield return GoToBar(51.5f);
+        stars.Spawn(v2(.8f, 2), true);
 
         //-----------------------
         // Stage 2: breakdown
@@ -252,13 +258,13 @@ public class MusicLevel : Level
         // 82
         yield return GoToBar(82);
         stars.Spawn(v2(.3f, 2), true);
-        spawnCloud(.6f, 1, -.7f);
+        spawnCloud(.6f, 1, -1f);
 
         // 83
         yield return GoToBar(83);
         spawnBomb(-.7f, .05f, 4f);
         stars.Spawn(v2(-.3f, 2), true);
-        spawnCloud(-.8f, 1, 1.4f);
+        spawnCloud(-.8f, 1, 1f);
 
         // 85
         yield return GoToBar(85);
@@ -274,7 +280,6 @@ public class MusicLevel : Level
         yield return GoToBar(87);
         spawnBomb(0, .05f, 3);
         stars.Spawn(v2(.4f, 2), true);
-        StartFlood(5f, 30, false);
 
         // 89
         yield return GoToBar(89);
@@ -283,8 +288,7 @@ public class MusicLevel : Level
 
         // 90
         yield return GoToBar(90);
-        spawnBomb(.9f, .05f, 2);
-        spawnBomb(-.9f, .05f, 2);
+        StartFlood(5f, 30, false);
 
         // 91
         yield return GoToBar(91);
@@ -300,7 +304,7 @@ public class MusicLevel : Level
 
         // 93
         yield return GoToBar(93);
-        spawnBomb(.3f, .2f, 2);
+        spawnBomb(.3f, .05f, 2);
         stars.Spawn(v2(.3f, 2), true);
 
         // 94
@@ -311,7 +315,7 @@ public class MusicLevel : Level
 
         // 95
         yield return GoToBar(95);
-        spawnBomb(-.3f, .2f, 2);
+        spawnBomb(-.3f, .05f, 2);
         stars.Spawn(v2(-.3f, 2), true);
 
         // 97
@@ -319,8 +323,7 @@ public class MusicLevel : Level
         spawnCloud(-.9f, 1, -1);
         spawnCloud(.9f, 1, 1);
 
-        yield return GoToBar(111f);
-        yield return WaitTick(4);
+        yield return GoToBar(104);
         yield return base.LevelScript();
     }
 }
